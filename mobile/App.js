@@ -1,25 +1,27 @@
 import React,{Component} from 'react';
-import {Text,View,Image,StyleSheet} from 'react-native';
+import {Text,View,Image,StyleSheet,TextInput,Button} from 'react-native';
 
 
 
 const styles = StyleSheet.create({
-                                bigTitle: {
-                                color:'black',
-                                fontWeight: 'bold',
-                                fontSize: 30,
-
-                                },
-                                 description: {
-                                color:'black',
-                                fontSize:20,
-
-                                },
-                                });
+    bigTitle: {
+    color:'black',
+    fontWeight: 'bold',
+    fontSize: 30,
+    },
+    description: {
+    color:'black',
+    fontSize:20,
+    },
+    });
 
 
 
 export default class HelloWorld extends Component{
+    constructor(props){
+        super(props);
+        this.state={text:''};
+    }
     render(){
         return(
                <View style={{flex:1, justifyContent:"center",
@@ -28,16 +30,20 @@ export default class HelloWorld extends Component{
                style={{width: 275, height:100}}/>
                <Text style={styles.bigTitle}> Welcome to TripSlip!</Text>
                <Text style={styles.description}> Enter a location: </Text>
+                    <TextInput
+                        style={{height:40}}
+                        placeholder="Type your location here"
+                        onChangeText={(text)=>this.setState({text})}
+                        value={this.state.text}
+                    />
+               <Button
+               onPress={()=>{
+               alert('Next screen coming soon');
+               }}
+               title="Create Itinerary"
+               />
                </View>
 
         );
     }
-//               render(){
-//               return(
-//                      <View>
-//                      <Text style={styles.bigTitle}> Welcome to TripSlip!</Text>
-//                      <Text style={styles.description}> Enter a location: </Text>
-//                      </View>
-//                      );
-//        }
 }

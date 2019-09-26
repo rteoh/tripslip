@@ -1,2 +1,2 @@
 # tripslip
-A site that generates an itinerary.
+A website and an app that generates an itinerary.

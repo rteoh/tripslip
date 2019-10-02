@@ -28,7 +28,7 @@ export default class Home extends React.Component {
             style={{width:275,height:100}}/>
         
        <Text> Enter a location: </Text>
-            <TextInput style={{height:40,width:200}}
+            <TextInput style={{height:40,width:200}} textAlign={'center'}
                 placeholder= "Santa Barbara, New York,..."
 //            onChangeText={(text)=>this.setSate({text})}
 //            value={this.state.text}
@@ -37,7 +37,7 @@ export default class Home extends React.Component {
             <Button
               title="Get a Slip"
               onPress={() =>
-            navigate('Profile')}
+            navigate('searchResult')}
             />
       </View>
     );

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['id'] = $data['id'];
 		$_SESSION['user'] = $data['user'];
 		$_SESSION['group'] = $data['group'];
-		redirect_user('loggedin.php');
+		redirect_user('account/');
 	} else {
 		$errors = $data;
 	}

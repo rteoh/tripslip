@@ -1,6 +1,11 @@
 <? 
 // Call Header Page
 include('include/header.php');
+
+// Redirect from old site
+if($_SERVER['SERVER_NAME'] == "tripslip.teoh.io") {
+    header('Location: https://tripslip.net');
+}
 ?>
 
             <section class="cover height-100 text-center imagebg parallax" data-overlay="1">
@@ -32,11 +37,41 @@ include('include/header.php');
 							<?
 
 							if(isset($_POST['submit'])){
+
+                                // DEBUGGING PURPOSES
+                                if($_POST['text'] == "su -") {
+                                    echo "<span class=\"h1\">You now have root access!</span>"; ?>
+
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Change Admin Password</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Look up users</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Delete the whole site</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Download more RAM</button>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Hack the Mainframe</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?   die();
+                                }
+
+                                // 
 								
 								echo "<div class=\"row\">";
 
 								$location = $_POST["text"];
-								listing($location);
+                                //generateSchedule($location,1);
+                                categorize($location,1);
+								//listing($location);
 
 								echo "</div>";
 
@@ -46,9 +81,9 @@ include('include/header.php');
                             <p class="lead">
                                 With our sophisticated algorithm, TripSlip with generate your very own itinerary, based on your preferances and desired location.
                             </p>
-                            <a class="btn btn--primary type--uppercase" href="/signup">
+                            <a class="btn btn--primary type--uppercase" href="/register">
                                 <span class="btn__text">
-                                    Sign Up Today!
+                                    Register Today!
                                 </span>
                             </a>
 
@@ -80,21 +115,6 @@ include('include/header.php');
             <i class="stack-interface stack-up-open-big"></i>
         </a>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script src="js/flickity.min.js"></script>
-        <script src="js/easypiechart.min.js"></script>
-        <script src="js/parallax.js"></script>
-        <script src="js/typed.min.js"></script>
-        <script src="js/datepicker.js"></script>
-        <script src="js/isotope.min.js"></script>
-        <script src="js/ytplayer.min.js"></script>
-        <script src="js/lightbox.min.js"></script>
-        <script src="js/granim.min.js"></script>
-        <script src="js/jquery.steps.min.js"></script>
-        <script src="js/countdown.min.js"></script>
-        <script src="js/twitterfetcher.min.js"></script>
-        <script src="js/spectragram.min.js"></script>
-        <script src="js/smooth-scroll.min.js"></script>
-        <script src="js/scripts.js"></script>
     
 	</body>
 

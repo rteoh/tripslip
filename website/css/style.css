@@ -1,0 +1,16 @@
+#location:placeholder {
+	color: white;
+}
+
+#location {
+	background-color: transparent;
+	color: white;
+    text-align: center;
+}
+
+#location:focus {
+	outline: none;
+	border-color: white;
+}
+
+

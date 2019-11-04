@@ -1,57 +1,30 @@
 <? 
 // Essential for accounts
-include("../includes/check.php");
+include("../../includes/check.php");
+include("../header.php");
+
+// Remove .php and clean up string for location variable
+$location = $_SERVER["QUERY_STRING"];
+$location = str_replace(".php", "", $location);
+$location = str_replace("%20", " ", $location);
+
+$insert = @mysqli_query($con, "INSERT INTO `user_locations`(`user`, `location`) VALUES ('$user','$location')");
 ?>
-
-
-        <div class="main-container">
-            <section class="bg--secondary space--sm">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="boxed boxed--lg boxed--border">
-                                <div class="text-block text-center">
-                                    <span class="h5"><? echo $user; ?></span>
-                                    <span>Admin</span>
-                                    <!--<span class="label">Pro</span> -->
-                                </div>
-                                <hr>
-                                <div class="text-block">
-                                    <ul class="menu-vertical">
-                                        <!--<li>
-                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-profile;hidden">Profile</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-notifications;hidden">Email Notifications</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-billing;hidden">Billing Details</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-toggle-class=".account-tab:not(.hidden);hidden|#account-password;hidden">Password</a>
-                                        </li>-->
-                                        <li>
-                                            <a href="/logout" data-toggle-class=".account-tab:not(.hidden);hidden|#account-delete;hidden">Logout</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div class="col-lg-8">
                             <div class="boxed boxed--lg boxed--border">
                                 <div id="account-profile" class="account-tab">
                                     <div class="row">
                                         <div class="col-md-9">
-                                            <h2>Places to Travel</h2>
+                                            <h2><? echo $location; ?></h2>
                                         </div>
                                         <div class="col-md-3" style="text-align:right">
-                                            <a class="btn btn--sm btn--primary type--uppercase left" href="add">
-                                                <span class="btn__text">+</span>
+                                            <a class="btn btn--sm btn--primary type--uppercase left" style="background: #cb2027;border:none" href="/account/">
+                                                <span class="btn__text">x</span>
                                             </a>
-                                        </div>                               
-                                        <div class="col-md-12">
-                                            <? location_list(); ?>
-                                        </div>
+                                        </div> 
+                                         <div class="col-md-12">
+                                            <? process_location($location,$user);?>
+                                        </div>                            
                                     </div>
                                 </div>
                             </div>

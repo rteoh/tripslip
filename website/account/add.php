@@ -2,6 +2,23 @@
 // Essential for accounts
 include("../includes/check.php");
 include("../account/header.php");
+
+// Process location query
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    // Check if location is empty
+    if($_POST['location'] == "") {
+        $location = "Fullerton";
+    }
+    // If location is not empty
+    else {
+        $location = $_POST['location'];
+    }
+
+    header('Location: /account/location/processing/' . $location);
+}
+
+
 ?>
                         <div class="col-lg-8">
                             <div class="boxed boxed--lg boxed--border">
@@ -15,14 +32,18 @@ include("../account/header.php");
                                                 <span class="btn__text">x</span>
                                             </a>
                                         </div> 
-                                         <div class="col-md-10">
-                                            <input type="text" name="location" placeholder="Enter a Location" />
-                                        </div> 
-                                        <div class="col-md-2" style="text-align:right">
-                                            <a class="btn btn--sm btn--primary type--uppercase left" href="">
-                                                <span class="btn__text">Add</span>
-                                            </a>
-                                        </div>                              
+                                        <form method="POST" style="width:100%">
+                                            <div class="row">
+                                                <div class="col-md-10">
+                                                    <input type="text" name="location" placeholder="Enter a Location" />
+                                                </div> 
+                                                <div class="col-md-2" style="text-align:right">
+                                                    <a class="btn btn--sm btn--primary type--uppercase left" href="">
+                                                        <span class="btn__text">Add</span>
+                                                    </a>
+                                                </div> 
+                                            </div> 
+                                        </form>                            
                                     </div>
                                 </div>
                             </div>

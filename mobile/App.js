@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import AppNavigator from './AppNavigator';
-//import { createDrawerNavigator } from 'react-navigation-drawer';
+//import Icon from 'react-native-vector-icons/MaterialIcons'
 //
-//createDrawerNavigator(RouteConfigs, DrawerNavigatorConfig);
+//Icon.loadFont();
 
 export default class App extends React.Component {
   render() {

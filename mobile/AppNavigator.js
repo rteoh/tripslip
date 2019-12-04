@@ -1,11 +1,15 @@
 import { createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer} from 'react-navigation';
-import Home from './Home';
-import searchResult from './searchResult';
+import Home from './screens/Home';
+import searchResult from './screens/searchResult';
+import Profile from './screens/Profile';
+import SlipScreen from './screens/SlipScreen';
 
 const AppNavigator = createStackNavigator({
   Home: { screen: Home },
   searchResult: { screen: searchResult},
+  Profile: {screen: Profile},
+  SlipScreen: {screen: SlipScreen},
 
 });
 const App=createAppContainer(AppNavigator);

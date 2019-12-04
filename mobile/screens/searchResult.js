@@ -93,7 +93,7 @@ export default class searchResult extends React.Component {
             renderItem={item=>this.renderItem(item)}
 //            keyExtractor={item=>item.id.toString()}
             />
-  
+
             </View>
             
             

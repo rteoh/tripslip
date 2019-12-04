@@ -1,6 +1,0 @@
-If unrecognized font family 'entypo'
-
-React-native-link react-native-vector-icons
-
-- NAN ERROR
-You didn't type anything in the search bar

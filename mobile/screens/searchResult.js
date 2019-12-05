@@ -45,7 +45,7 @@ export default class searchResult extends React.Component {
     renderItem=(data)=>
     <Block>
     <TouchableOpacity style={styles.Card}>
-      <Card
+      <Card containerStyle={{padding: 1}}
       image= {{uri:data.item.image_url}}
       title={data.item.name}
       />
@@ -86,8 +86,9 @@ export default class searchResult extends React.Component {
     return (
 
             
-      <View style={styles.container}>
+      <View style={styles.list}>
             <FlatList
+            showsHorizontalScrollIndicator={false}
             data={this.state.dataSource}
        ItemSeparatorComponent={this.FlatListItemSeparator}
             renderItem={item=>this.renderItem(item)}

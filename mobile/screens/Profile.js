@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 export default class Profile extends React.Component {
     static navigationOptions={
-        title:'Welcome to Tripslip!',
+        title:'Login or Register',
     };
     constructor(props){
         super(props);
@@ -59,7 +59,7 @@ export default class Profile extends React.Component {
                          family="antdesign"
                          iconSize={16}
                          iconColor="#4a90e2"
-                        secureTextEntry="true"
+                        secureTextEntry={true}
                         onChangeText={(typedPass)=>this.setState({typedPass})}
 //                        value={this.state.typedPass}
 //                       onChangeText={(password)=>this.setState({password})}
@@ -85,7 +85,7 @@ export default class Profile extends React.Component {
                          shadowless
                        color="#4a90e2"
                          onPress={() =>
-                       navigate('searchResult',{JSON_ListView_Clicked_Item: this.state.text,})
+                       navigate('Home',{JSON_ListView_Clicked_Item: this.state.text,})
                        }
                        >Register</Button>
             

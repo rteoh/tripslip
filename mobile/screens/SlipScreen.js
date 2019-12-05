@@ -4,6 +4,13 @@ import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,B
 import {Card,Divider} from 'react-native-elements';
 
 export default class SlipScreen extends React.Component {
+    static navigationOptions=({navigation})=>{
+        return {
+            title:"Your Slip",
+        headerStyle:{backgroundColor:"#fff"},
+        headerTitleStle:{textAlign:"center",flex:1}
+        };
+    };
     constructor(props){
          super(props);
          this.state={
@@ -45,7 +52,7 @@ export default class SlipScreen extends React.Component {
      <Block>
     <TouchableOpacity style={styles.Card}>
        <Card
-        title = {data.item.login}
+        title = {data.item.location}
        />
      </TouchableOpacity>
 <View>

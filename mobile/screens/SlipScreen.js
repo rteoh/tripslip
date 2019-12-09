@@ -52,19 +52,15 @@ export default class SlipScreen extends React.Component {
      renderItem=(data)=>
      <Block>
     <TouchableOpacity style={styles.Card}>
-       <Card
-        containerStyle={{padding: 1}}
-        title = {data.item.location[1]}
-        image={{uri:data.item.image}}
-            />
+    <Card
+           containerStyle={{padding: 1}}
+           title = {data.item.location[0]}
+           image={{uri:data.item.image}}
+               />
+
+
   
      </TouchableOpacity>
-<View>
-    {data.item.login === 'false' && <Text> Invalid Credentials </Text>}
-        {data.item.login === 'true' && <Text> Successful Login </Text> }
-            <Text> Successful Login </Text>
-    </View>
-
      </Block>
 
     render() {
@@ -72,26 +68,24 @@ export default class SlipScreen extends React.Component {
     const {navigate}=this.props.navigation;
       return (
         <View style={styles.list}>
-
-              <Text> Username: {this.props.navigation.state.params.Username} </Text>
-          <Text> Password: {this.props.navigation.state.params.Pass} </Text>
                     <FlatList
                         data={this.state.dataSource}
                ItemSeparatorComponent={this.FlatListItemSeparator}
                         renderItem={item=>this.renderItem(item)}
             //            keyExtractor={item=>item.id.toString()}
                         />
+              <View style={styles.gap}>
               <Button
                            capitalize
                            round
                            size="small"
                            shadowless
-                         color="#4a90e2"
+                           color="#4a90e2"
                            onPress={() =>
                            navigate('personalSlip',{JSON_ListView_Clicked_Item: this.state.text})
                            }
                          >View Slip</Button>
-
+                </View>
               </View>
       );
     }
@@ -114,5 +108,11 @@ const styles = StyleSheet.create({
     paddingVertical:4,
     margin:5,
     backgroundColor:"#fff"
-   }
+   },
+    gap:{
+    flex:1,
+    paddingVertical:30,
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    },
 });

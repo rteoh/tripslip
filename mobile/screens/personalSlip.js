@@ -1,6 +1,6 @@
 import React from 'react';
 import { Block, theme, NavBar, Input } from "galio-framework";
-import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,Button,Image} from 'react-native';
+import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,Button,Image,Alert} from 'react-native';
 import {CheckBox,Card,Divider,Rating} from 'react-native-elements';
 
 export default class personalSlip extends React.Component {
@@ -46,7 +46,7 @@ export default class personalSlip extends React.Component {
     <Block>
     <TouchableOpacity style={styles.Card}>
     <Card
-        title={data.item.name}
+        featuredSubtitle={data.item.name}
         image={{uri:data.item.image_url}}>
         <Text style={{marginBottom: 10}}>
             Type: {data.item.type} {"\n"}
@@ -58,7 +58,9 @@ export default class personalSlip extends React.Component {
 
         <Button
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='Remove From Slip' />
+          title='Remove From Slip'
+            onPress={() => Alert.alert('Removed')}
+            />
       </Card>
     </TouchableOpacity>
    

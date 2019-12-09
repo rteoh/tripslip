@@ -47,18 +47,14 @@ export default class searchResult extends React.Component {
     <TouchableOpacity style={styles.Card}>
       <Card containerStyle={{padding: 1}}
       image= {{uri:data.item.image_url}}
-      title={data.item.name}
+      featuredSubtitle={data.item.name}
       />
     </TouchableOpacity>
    
     <CheckBox
       center
       title='Add to Slip'
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      checked={this.state.checked}
-      onPress={() => Alert.alert('Added to Slip')
-                       }
+      onPress={() => Alert.alert('Added to Slip')}
     />
 
     </Block>

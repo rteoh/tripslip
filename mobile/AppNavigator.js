@@ -4,12 +4,16 @@ import Home from './screens/Home';
 import searchResult from './screens/searchResult';
 import Profile from './screens/Profile';
 import SlipScreen from './screens/SlipScreen';
+import RegistrationScreen from './screens/RegistrationScreen';
+import personalSlip from './screens/personalSlip';
 
 const AppNavigator = createStackNavigator({
   Home: { screen: Home },
   searchResult: { screen: searchResult},
   Profile: {screen: Profile},
   SlipScreen: {screen: SlipScreen},
+  RegistrationScreen: {screen: RegistrationScreen},
+  personalSlip: {screen: personalSlip},
 
 });
 const App=createAppContainer(AppNavigator);

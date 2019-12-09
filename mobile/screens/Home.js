@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import {Button,Input,Block} from 'galio-framework'
 import { StyleSheet, Text, View,Image,TextInput } from 'react-native';
-import{Avatar} from 'react-native-elements';
+import{Avatar,Overlay} from 'react-native-elements';
 
 const styles = StyleSheet.create({
   container: {

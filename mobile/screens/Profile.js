@@ -10,10 +10,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-                                 gap:{
-                                 flex:0.15,
-                                 justifyContent: 'space-around',
-                                 },
+  gap:{
+  flex:0.15,
+  justifyContent: 'space-around',
+  },
 });
 
 export default class Profile extends React.Component {
@@ -85,7 +85,7 @@ export default class Profile extends React.Component {
                          shadowless
                        color="#4a90e2"
                          onPress={() =>
-                       navigate('Home',{JSON_ListView_Clicked_Item: this.state.text,})
+                       navigate('RegistrationScreen',{JSON_ListView_Clicked_Item: this.state.text,})
                        }
                        >Register</Button>
             

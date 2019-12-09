@@ -1,13 +1,13 @@
 import React from 'react';
 import { Block, theme, NavBar, Input } from "galio-framework";
-import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,Button,Image,Alert} from 'react-native';
-import {CheckBox,Card,Divider} from 'react-native-elements';
+import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,Button,Image} from 'react-native';
+import {CheckBox,Card,Divider,Rating} from 'react-native-elements';
 
-export default class searchResult extends React.Component {
+export default class personalSlip extends React.Component {
 
     static navigationOptions=({navigation})=>{
         return {
-            title:"Places to Consider",
+            title:"This Slip",
         headerStyle:{backgroundColor:"#fff"},
         headerTitleStle:{textAlign:"center",flex:1}
         };
@@ -22,7 +22,7 @@ export default class searchResult extends React.Component {
     componentDidMount(){
         var str=this.props.navigation.state.params.JSON_ListView_Clicked_Item;
         str=str.replace(/\s+/g,'-');
-        fetch("https://tripslip.net/api/"+str+"").then(response =>response.json()).then((responseJson)=>{
+        fetch("https://tripslip.net/api/new-york?schedule=1").then(response =>response.json()).then((responseJson)=>{
              this.setState({
                  loading:false,
                  dataSource:responseJson
@@ -45,21 +45,24 @@ export default class searchResult extends React.Component {
     renderItem=(data)=>
     <Block>
     <TouchableOpacity style={styles.Card}>
-      <Card containerStyle={{padding: 1}}
-      image= {{uri:data.item.image_url}}
-      title={data.item.name}
-      />
+    <Card
+        title={data.item.name}
+        image={{uri:data.item.image_url}}>
+        <Text style={{marginBottom: 10}}>
+            Type: {data.item.type} {"\n"}
+            Rating: {data.item.rating} Stars {"\n"}
+    Suggested Arrival Time: {data.item.current_time} {"\n"}
+            Time You'll Spend Here: {data.item.time_spent} Hour(s)
+            
+        </Text>
+
+        <Button
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          title='Remove From Slip' />
+      </Card>
     </TouchableOpacity>
    
-    <CheckBox
-      center
-      title='Add to Slip'
-      checkedIcon='dot-circle-o'
-      uncheckedIcon='circle-o'
-      checked={this.state.checked}
-      onPress={() => Alert.alert('Added to Slip')
-                       }
-    />
+  
 
     </Block>
 
@@ -88,6 +91,7 @@ export default class searchResult extends React.Component {
 
             
       <View style={styles.list}>
+        
             <FlatList
             showsHorizontalScrollIndicator={false}
             data={this.state.dataSource}

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Block, theme, NavBar, Input } from "galio-framework";
-import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View ,Button,Image} from 'react-native';
+import { Block, theme, NavBar, Input,Button} from "galio-framework";
+import { ActivityIndicator, FlatList, TouchableOpacity,StyleSheet, Text, View,Image,Alert} from 'react-native';
 import {Card,Divider} from 'react-native-elements';
 
 export default class SlipScreen extends React.Component {
     static navigationOptions=({navigation})=>{
         return {
-            title:"Your Slip",
+            title:"Your Slips",
         headerStyle:{backgroundColor:"#fff"},
         headerTitleStle:{textAlign:"center",flex:1}
         };
@@ -15,7 +15,8 @@ export default class SlipScreen extends React.Component {
          super(props);
          this.state={
              loading: true,
-             dataSource:[]
+             dataSource:[],
+             text:'',
          };
 
      }
@@ -23,7 +24,7 @@ export default class SlipScreen extends React.Component {
     FlatListItem=()=>{
         return(
                <View style={{
-               height:.5,
+               height:.0,
                width:"100%",
                backgroundColor:"rgba(0,0,0,0.5)",
                }}
@@ -35,7 +36,7 @@ export default class SlipScreen extends React.Component {
     componentDidMount(){
         var UN=this.props.navigation.state.params.Username;
         var PW=this.props.navigation.state.params.Pass;
-
+        
         fetch("https://tripslip.net/api/?user="+UN+"&pass="+PW+"").then(response =>response.json()).then((responseJson)=>{
                     this.setState({
                         loading:false,
@@ -52,30 +53,44 @@ export default class SlipScreen extends React.Component {
      <Block>
     <TouchableOpacity style={styles.Card}>
        <Card
-        title = {data.item.location}
-       />
+        containerStyle={{padding: 1}}
+        title = {data.item.location[1]}
+        image={{uri:data.item.image}}
+            />
+  
      </TouchableOpacity>
 <View>
     {data.item.login === 'false' && <Text> Invalid Credentials </Text>}
         {data.item.login === 'true' && <Text> Successful Login </Text> }
-            <Text> {data.item.location} </Text>
+            <Text> Successful Login </Text>
     </View>
 
      </Block>
 
     render() {
-   
+       
+    const {navigate}=this.props.navigation;
       return (
-        <View style={styles.container}>
+        <View style={styles.list}>
 
               <Text> Username: {this.props.navigation.state.params.Username} </Text>
           <Text> Password: {this.props.navigation.state.params.Pass} </Text>
                     <FlatList
                         data={this.state.dataSource}
-                   ItemSeparatorComponent={this.FlatListItemSeparator}
+               ItemSeparatorComponent={this.FlatListItemSeparator}
                         renderItem={item=>this.renderItem(item)}
             //            keyExtractor={item=>item.id.toString()}
                         />
+              <Button
+                           capitalize
+                           round
+                           size="small"
+                           shadowless
+                         color="#4a90e2"
+                           onPress={() =>
+                           navigate('personalSlip',{JSON_ListView_Clicked_Item: this.state.text})
+                           }
+                         >View Slip</Button>
 
               </View>
       );

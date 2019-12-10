@@ -1,4 +1,8 @@
 <?
+
+// Start Session
+session_start();
+
 include("con.php");
 include("function.php");
 
@@ -35,6 +39,7 @@ include("function.php");
                 <!--end of container-->
             </div>
             <!--end bar-->
+            <? if(!isset($nav_button)) { ?>
             <nav id="menu2" class="bar bar-2 hidden-xs bar--transparent bar--absolute" data-scroll-class="100vh:pos-fixed">
                 <div class="container">
                     <div class="row">
@@ -72,5 +77,6 @@ include("function.php");
                 <!--end of container-->
             </nav>
             <!--end bar-->
+            <? } ?>
         </div>
         <div class="main-container">

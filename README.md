@@ -15,7 +15,7 @@ A website and a mobile app that generates an itinerary for travelers.
 Please watch our Tutorial video on how to run the React Native App
 
 ## Change Log
-• 09/08/2019 (v1.0) Created website and linked to Yelp API database.  
+• 09/08/2019 (v1.0) Created website and linked to Yelp API database.<br/>
 • 09/09/2019 (v1.0) Added MySQL Locations to database.  
 • 09/15/2019 (v1.1) Added more functions and fix apostrophe issue for database.  
 • 09/25/2019 (v1.1) Implemented React Native to begin mobile application development.  

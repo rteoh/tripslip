@@ -18,6 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$_SESSION['id'] = $data['id'];
 		$_SESSION['user'] = $data['user'];
 		$_SESSION['group'] = $data['group'];
+		$_SESSION['token'] = time() + 3600; // Token is set for 1 hour
 		redirect_user('account/');
 	} else {
 		$errors = $data;

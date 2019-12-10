@@ -13,3 +13,5 @@ A website and a mobile app that generates an itinerary for travelers.
 ## Mobile
 
 Please watch our Tutorial video on how to run the React Native App
+
+## Change Log

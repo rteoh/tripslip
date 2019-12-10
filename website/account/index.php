@@ -49,9 +49,7 @@ include("../includes/check.php");
                                                 <span class="btn__text">+</span>
                                             </a>
                                         </div>                               
-                                        <div class="col-md-12">
-                                            <? location_list(); ?>
-                                        </div>
+                                        <? location_list($user); ?>
                                     </div>
                                 </div>
                             </div>

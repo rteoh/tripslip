@@ -4,7 +4,7 @@ include("../includes/check.php");
 include("../account/header.php");
 
 // Process location query
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post") {
 
     // Check if location is empty
     if($_POST['location'] == "") {
@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     header('Location: /account/location/processing/' . $location);
 }
-
 
 ?>
                         <div class="col-lg-8">
@@ -32,15 +31,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                                 <span class="btn__text">x</span>
                                             </a>
                                         </div> 
-                                        <form method="POST" style="width:100%">
+                                        <form method="post" action="/account/location/processing/" style="width:100%">
                                             <div class="row">
                                                 <div class="col-md-10">
                                                     <input type="text" name="location" placeholder="Enter a Location" />
                                                 </div> 
                                                 <div class="col-md-2" style="text-align:right">
-                                                    <a class="btn btn--sm btn--primary type--uppercase left" href="">
-                                                        <span class="btn__text">Add</span>
-                                                    </a>
+                                                    <input class="btn btn--sm btn--primary type--uppercase left" style="-webkit-appearance: none;" type="submit" value="Add" />
                                                 </div> 
                                             </div> 
                                         </form>                            

@@ -3,8 +3,22 @@
 include("../../includes/check.php");
 include("../header.php");
 
+
+
+if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "post") {
+
+    // Check if location is empty
+    if($_POST['location'] == "") {
+        $location = "Fullerton";
+    }
+    // If location is not empty
+    else {
+        $location = $_POST['location'];
+    }
+}
+
 // Remove .php and clean up string for location variable
-$location = $_SERVER["QUERY_STRING"];
+$location1 = $_SERVER["QUERY_STRING"];
 $location = str_replace(".php", "", $location);
 $location = str_replace("%20", " ", $location);
 
@@ -22,9 +36,47 @@ $insert = @mysqli_query($con, "INSERT INTO `user_locations`(`user`, `location`) 
                                                 <span class="btn__text">x</span>
                                             </a>
                                         </div> 
-                                         <div class="col-md-12">
-                                            <? process_location($location,$user);?>
-                                        </div>                            
+                                        <? 
+                                        process_location($location,$user);
+                                        header('Location: https://tripslip.net/account/');
+
+
+                                        $array = generateSchedule($location,$user);
+                                
+                                        // Produce every listing from JSON to a table
+                                        for($i = 0; $i < count($array); $i++) {
+
+
+                                            // If it is 8AM again, add new Table
+                                            if($array[$i]->current_time == "8:00AM") {
+                                                echo "<h2> Day " . $array[$i]->day . "</h2>";
+                                                echo "<table class=\"border--round table--alternate-row\"><tbody>";
+                                            }
+
+                                            echo "<tr>";
+                                            echo "";
+                                            echo "<td><img src=\"" . $array[$i]->image_url . "\" width=100px></td>";
+                                            echo "<td><a href=\"https://tripslip.net/biz/" . $array[$i]->id . "\">" . $array[$i]->name . "</a></td>";
+                                            echo "<td>" . $array[$i]->type . "</td>";
+                                            echo "<td>" . $array[$i]->current_time . "</td>";
+                                            echo "</tr>";
+
+
+                                            // If day is not the same as next day, then end the table
+                                            if(@$array[$i]->day != @$array[$i+1]->day) {
+                                                echo "</tbody></table>"; // End of table
+                                            }
+
+
+                                        }
+
+
+
+                                        echo "</div>"; 
+
+                                ?>
+
+                                                              
                                     </div>
                                 </div>
                             </div>
@@ -65,21 +117,5 @@ $insert = @mysqli_query($con, "INSERT INTO `user_locations`(`user`, `location`) 
         <a class="back-to-top inner-link" href="#start" data-scroll-class="100vh:active">
             <i class="stack-interface stack-up-open-big"></i>
         </a>
-        <script src="js/jquery-3.1.1.min.js"></script>
-        <script src="js/flickity.min.js"></script>
-        <script src="js/easypiechart.min.js"></script>
-        <script src="js/parallax.js"></script>
-        <script src="js/typed.min.js"></script>
-        <script src="js/datepicker.js"></script>
-        <script src="js/isotope.min.js"></script>
-        <script src="js/ytplayer.min.js"></script>
-        <script src="js/lightbox.min.js"></script>
-        <script src="js/granim.min.js"></script>
-        <script src="js/jquery.steps.min.js"></script>
-        <script src="js/countdown.min.js"></script>
-        <script src="js/twitterfetcher.min.js"></script>
-        <script src="js/spectragram.min.js"></script>
-        <script src="js/smooth-scroll.min.js"></script>
-        <script src="js/scripts.js"></script>
     </body>
 </html>

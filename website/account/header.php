@@ -5,8 +5,8 @@
                         <div class="col-lg-4">
                             <div class="boxed boxed--lg boxed--border">
                                 <div class="text-block text-center">
-                                    <span class="h5"><? echo $_SESSION['user'] ?></span>
-                                    <span>Admin</span>
+                                    <span class="h5"><a href="/account/"><? echo $_SESSION['user'] ?></a></span>
+                                    <span>Traveler</span>
                                     <!--<span class="label">Pro</span> -->
                                 </div>
                                 <hr>

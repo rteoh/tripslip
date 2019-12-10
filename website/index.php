@@ -34,44 +34,57 @@ if($_SERVER['SERVER_NAME'] == "tripslip.teoh.io") {
                 <div class="container">
                     <div class="row">
                     	<div class="col-md-10 col-lg-12">
+        
 							<?
 
-							if(isset($_POST['submit'])){
-
-                                // DEBUGGING PURPOSES
-                                if($_POST['text'] == "su -") {
-                                    echo "<span class=\"h1\">You now have root access!</span>"; ?>
-
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Change Admin Password</button>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Look up users</button>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Delete the whole site</button>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Download more RAM</button>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button type="submit" class="btn btn--primary type--uppercase" name="submit">Hack the Mainframe</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?   die();
-                                }
-
-                                // 
+                            if(isset($_POST["text"])) {
 								
 								echo "<div class=\"row\">";
 
 								$location = $_POST["text"];
-                                //generateSchedule($location,1);
-                                categorize($location,1);
-								//listing($location);
+
+                                // If user is not logged in
+                                if(!isset($_SESSION['user'])) {
+
+                                    // There is no user account, so account is 0
+                                    $array = generateSchedule($location,0);
+
+                                } else { // If user is logged in
+
+                                    $user = $_SESSION['user'];
+
+                                    $array = generateSchedule($location,$user);
+                                }
+
+                                
+                                // Produce every listing from JSON to a table
+                                for($i = 0; $i < count($array); $i++) {
+
+
+                                    // If it is 8AM again, add new Table
+                                    if($array[$i]->current_time == "8:00AM") {
+                                        echo "<h2> Day " . $array[$i]->day . "</h2>";
+                                        echo "<table class=\"border--round table--alternate-row\"><tbody>";
+                                    }
+
+                                    echo "<tr>";
+                                    echo "";
+                                    echo "<td><img src=\"" . $array[$i]->image_url . "\" width=100px></td>";
+                                    echo "<td><a href=\"https://tripslip.net/biz/" . $array[$i]->id . "\">" . $array[$i]->name . "</a></td>";
+                                    echo "<td>" . $array[$i]->type . "</td>";
+                                    echo "<td>" . $array[$i]->current_time . "</td>";
+                                    echo "</tr>";
+
+
+                                    // If day is not the same as next day, then end the table
+                                    if(@$array[$i]->day != @$array[$i+1]->day) {
+                                        echo "</tbody></table>"; // End of table
+                                    }
+
+
+                                }
+
+
 
 								echo "</div>";
 

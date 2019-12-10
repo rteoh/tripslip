@@ -8,13 +8,14 @@ include('../include/header.php');
 
 // Get ID from URL
 $id = str_replace("/biz/", "", $_SERVER['REQUEST_URI']);
+$id = str_replace("?delete", "", $id);
 
 // Convert Unicode to UTF-8
 $id = urldecode($id);
 
 
 // Get business data from MySQL database.
-$r = mysqli_query($con, "SELECT * FROM yelp_business WHERE alias='$id'");
+$r = mysqli_query($con, "SELECT * FROM yelp_business WHERE id='$id'");
 $row = mysqli_fetch_array ($r, MYSQLI_ASSOC);
 
 $category = $row["category"];
@@ -43,6 +44,24 @@ else if($row["country"] == "") {
 }
 
 
+// Allow user to delete location from there list
+$user = $_SESSION['user'];
+
+$remove = FALSE;
+
+if(@isset($user) && @isset($_GET['delete'])) {
+
+    // Change remove variable to make it compatible with the removeListing Function
+    $remove = $row["id"];
+
+    removeListing($user,$remove);
+
+    // Change back to boolean
+    $remove = TRUE;
+
+}
+
+
 ?>
 
 			<section class="cover height-90 imagebg text-center" data-overlay="2" id="home">
@@ -65,6 +84,7 @@ else if($row["country"] == "") {
             <section class="text-center">
                 <div class="container">
                     <div class="row">
+                        <? if($remove == TRUE) { echo '<div class="col-md-12">Location has been removed.</div>'; } ?>
                     	<div class="col-md-6">
                     		<? map($row["latitude"],$row["longitude"]); ?>
                     	</div>
@@ -88,6 +108,7 @@ else if($row["country"] == "") {
 
 							<h6>Tags: <? echo $row["category"] ?></h6>
                     	</div>
+                        <? if($remove == FALSE) { echo '<div class="col-md-12" style="margin-top:10%"><a href="?delete"><input class="btn btn--sm btn--danger type--uppercase left" style="-webkit-appearance: none;background: #cb2027;color:#fff;border: none;" value="Delete Location from your List"></a></div>'; } ?>
                     </div>
                     <!--end of row-->
                 </div>

@@ -54,9 +54,19 @@ export default class SlipScreen extends React.Component {
     <TouchableOpacity style={styles.Card}>
     <Card
            containerStyle={{padding: 1}}
-           title = {data.item.location[0]}
-           image={{uri:data.item.image}}
+            image={{uri:"https://cdn.imgbin.com/5/19/14/imgbin-building-city-icons-1AVesZcY1sUxG6YM9YHXGgSyN.jpg"}}
+                title = {data.item.location[0]}
+        
                />
+    <Card
+            containerStyle={{padding: 1}}
+             image={{uri:"https://cdn.imgbin.com/5/19/14/imgbin-building-city-icons-1AVesZcY1sUxG6YM9YHXGgSyN.jpg"}}
+                 title = {data.item.location[1]}
+         
+                />
+
+     
+     
 
 
   

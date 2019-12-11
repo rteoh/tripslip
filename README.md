@@ -12,7 +12,8 @@ A website and a mobile app that generates an itinerary for travelers.
 
 ## Mobile
 
-Please watch our Tutorial video on how to run the React Native App
+Please watch our Tutorial video on how to run the React Native App.
+https://www.youtube.com/watch?v=PCMF8-_dWh4&feature=youtu.be
 
 ## Change Log
 • 09/08/2019 (v1.0) Created website and linked to Yelp API database.<br/>
